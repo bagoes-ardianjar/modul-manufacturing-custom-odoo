@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="pembahanan_actions_id" model="ir.actions.act_window">
+        <field name="name">Pembahanan</field>
+        <field name="res_model">kb.mrp.pembahanan</field>
+    </record>
+    <record id="pembahanan_actions_tree_view_id" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="kb_mrp_production.kb_mrp_pembahanan_tree_view_id"/>
+        <field name="act_window_id" ref="kb_mrp_production.pembahanan_actions_id"/>
+    </record>
+
+    <record id="pembahanan_actions_form_view_id" model="ir.actions.act_window.view">
+        <field name="sequence" eval="4"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="kb_mrp_production.kb_mrp_pembahanan_form_view_id"/>
+        <field name="act_window_id" ref="kb_mrp_production.pembahanan_actions_id"/>
+    </record>
+
+    <record id="sawmil_actions_id" model="ir.actions.act_window">
+        <field name="name">Sawmil</field>
+        <field name="res_model">kb.mrp.sawmil</field>
+    </record>
+    <record id="sawmil_actions_tree_view_id" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="kb_mrp_production.kb_mrp_sawmil_tree_view_id"/>
+        <field name="act_window_id" ref="kb_mrp_production.sawmil_actions_id"/>
+    </record>
+
+    <record id="sawmil_actions_form_view_id" model="ir.actions.act_window.view">
+        <field name="sequence" eval="4"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="kb_mrp_production.kb_mrp_sawmil_form_view_id"/>
+        <field name="act_window_id" ref="kb_mrp_production.sawmil_actions_id"/>
+    </record>
+
+    <record id="vakum_celup_actions_id" model="ir.actions.act_window">
+        <field name="name">Vakum Celup</field>
+        <field name="res_model">kb.mrp.vakum.celup</field>
+    </record>
+
+    <record id="vakum_celup_actions_tree_view_id" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="kb_mrp_production.kb_mrp_vakum_celup_tree_view_id"/>
+        <field name="act_window_id" ref="kb_mrp_production.vakum_celup_actions_id"/>
+    </record>
+
+     <record id="vakum_celup_actions_form_view_id" model="ir.actions.act_window.view">
+        <field name="sequence" eval="4"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="kb_mrp_production.kb_mrp_vakum_celup_form_view_id"/>
+        <field name="act_window_id" ref="kb_mrp_production.vakum_celup_actions_id"/>
+    </record>
+
+    <record id="sticking_actions_id" model="ir.actions.act_window">
+        <field name="name">Sticking</field>
+        <field name="res_model">kb.mrp.sticking</field>
+    </record>
+
+    <record id="sticking_actions_tree_view_id" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="kb_mrp_production.kb_mrp_sticking_tree_view_id"/>
+        <field name="act_window_id" ref="kb_mrp_production.sticking_actions_id"/>
+    </record>
+
+     <record id="sticking_actions_form_view_id" model="ir.actions.act_window.view">
+        <field name="sequence" eval="4"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="kb_mrp_production.kb_mrp_sticking_form_view_id"/>
+        <field name="act_window_id" ref="kb_mrp_production.sticking_actions_id"/>
+    </record>
+
+        <record id="oven_actions_id" model="ir.actions.act_window">
+        <field name="name">Oven</field>
+        <field name="res_model">kb.mrp.oven</field>
+    </record>
+
+    <record id="oven_actions_tree_view_id" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="kb_mrp_production.kb_mrp_oven_tree_view_id"/>
+        <field name="act_window_id" ref="kb_mrp_production.oven_actions_id"/>
+    </record>
+
+     <record id="oven_actions_form_view_id" model="ir.actions.act_window.view">
+        <field name="sequence" eval="4"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="kb_mrp_production.kb_mrp_oven_form_view_id"/>
+        <field name="act_window_id" ref="kb_mrp_production.oven_actions_id"/>
+    </record>
+
+    <record id="actions_server_print_excel_sawmil" model="ir.actions.server">
+        <field name="name">Print Excel</field>
+        <field name="model_id" ref="kb_mrp_production.model_kb_mrp_sawmil"/>
+        <field name="binding_model_id" ref="kb_mrp_production.model_kb_mrp_sawmil"/>
+        <field name="state">code</field>
+        <field name="code">action=records.funct_print_excel_sawmil()</field>
+    </record>
+
+    <record id="gudang_kering_actions_id" model="ir.actions.act_window">
+        <field name="name">Gudang Kering</field>
+        <field name="res_model">kb.mrp.gudang.kering</field>
+    </record>
+
+    <record id="gudang_kering_actions_tree_view_id" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="kb_mrp_production.kb_mrp_gudang_kering_tree_view_id"/>
+        <field name="act_window_id" ref="kb_mrp_production.gudang_kering_actions_id"/>
+    </record>
+
+     <record id="gudang_kering_actions_form_view_id" model="ir.actions.act_window.view">
+        <field name="sequence" eval="4"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="kb_mrp_production.kb_mrp_gudang_kering_form_view_id"/>
+        <field name="act_window_id" ref="kb_mrp_production.gudang_kering_actions_id"/>
+    </record>
+
+    <record id="actions_server_print_excel_vakum_celup" model="ir.actions.server">
+        <field name="name">Print Excel</field>
+        <field name="model_id" ref="kb_mrp_production.model_kb_mrp_vakum_celup"/>
+        <field name="binding_model_id" ref="kb_mrp_production.model_kb_mrp_vakum_celup"/>
+        <field name="state">code</field>
+        <field name="code">action=records.funct_print_excel_vakum_celup()</field>
+    </record>
+
+    <record id="actions_server_print_excel_sticking" model="ir.actions.server">
+        <field name="name">Print Excel</field>
+        <field name="model_id" ref="kb_mrp_production.model_kb_mrp_sticking"/>
+        <field name="binding_model_id" ref="kb_mrp_production.model_kb_mrp_sticking"/>
+        <field name="state">code</field>
+        <field name="code">action=records.funct_print_excel_sticking()</field>
+    </record>
+
+    <record id="actions_server_print_excel_oven" model="ir.actions.server">
+        <field name="name">Print Excel</field>
+        <field name="model_id" ref="kb_mrp_production.model_kb_mrp_oven"/>
+        <field name="binding_model_id" ref="kb_mrp_production.model_kb_mrp_oven"/>
+        <field name="state">code</field>
+        <field name="code">action=records.funct_print_excel_oven()</field>
+    </record>
+
+    <record id="actions_server_print_excel_gudang_kering" model="ir.actions.server">
+        <field name="name">Print Excel</field>
+        <field name="model_id" ref="kb_mrp_production.model_kb_mrp_gudang_kering"/>
+        <field name="binding_model_id" ref="kb_mrp_production.model_kb_mrp_gudang_kering"/>
+        <field name="state">code</field>
+        <field name="code">action=records.funct_print_excel_gudang_kering()</field>
+    </record>
+
+    <record id="rencana_pemakaian_actions_id" model="ir.actions.act_window">
+        <field name="name">Rencana Pemakaian</field>
+        <field name="res_model">kb.mrp.rencana.pemakaian</field>
+    </record>
+    <record id="rencana_pemakaian_actions_tree_view_id" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="kb_mrp_production.kb_mrp_rencana_pemakaian_tree_view_id"/>
+        <field name="act_window_id" ref="kb_mrp_production.rencana_pemakaian_actions_id"/>
+    </record>
+
+    <record id="pallet_sawmil_actions_id" model="ir.actions.act_window">
+        <field name="name">Pallet Sawmil</field>
+        <field name="res_model">kb.pallet.sawmil</field>
+    </record>
+
+    <record id="pallet_sawmil_actions_tree_view_id" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="kb_mrp_production.kb_pallet_sawmil_tree_view_id"/>
+        <field name="act_window_id" ref="kb_mrp_production.pallet_sawmil_actions_id"/>
+    </record>
+
+    <record id="pallet_sawmil_actions_form_view_id" model="ir.actions.act_window.view">
+        <field name="sequence" eval="4"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="kb_mrp_production.kb_pallet_sawmil_form_view_id"/>
+        <field name="act_window_id" ref="kb_mrp_production.pallet_sawmil_actions_id"/>
+    </record>
+
+</odoo>

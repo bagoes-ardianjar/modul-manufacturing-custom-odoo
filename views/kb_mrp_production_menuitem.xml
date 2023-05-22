@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+        id="kb_mrp_production_id"
+        name="Pembahanan"
+        parent="mrp.menu_mrp_root"
+        sequence="12"/>
+        <menuitem
+            id="child_kb_mrp_pembahanan_id"
+            name="Pembahanan"
+            sequence="1"
+            parent="kb_mrp_production.kb_mrp_production_id"
+            action="kb_mrp_production.pembahanan_actions_id"/>
+        <menuitem
+            id="child_kb_mrp_sawmil_id"
+            name="Sawmil"
+            sequence="1"
+            parent="kb_mrp_production.kb_mrp_production_id"
+            action="kb_mrp_production.sawmil_actions_id"/>
+        <menuitem
+            id="child_kb_mrp_vakum_celup_id"
+            name="Vakum/Celup"
+            sequence="1"
+            parent="kb_mrp_production.kb_mrp_production_id"
+            action="kb_mrp_production.vakum_celup_actions_id"/>
+        <menuitem
+            id="child_kb_mrp_sticking_id"
+            name="Sticking"
+            sequence="1"
+            parent="kb_mrp_production.kb_mrp_production_id"
+            action="kb_mrp_production.sticking_actions_id"/>
+        <menuitem
+            id="child_kb_mrp_oven_id"
+            name="Oven"
+            sequence="1"
+            parent="kb_mrp_production.kb_mrp_production_id"
+            action="kb_mrp_production.oven_actions_id"/>
+        <menuitem
+            id="child_kb_mrp_gudang_kering_id"
+            name="Gudang Kering"
+            sequence="1"
+            parent="kb_mrp_production.kb_mrp_production_id"
+            action="kb_mrp_production.gudang_kering_actions_id"/>
+        <menuitem
+            id="kb_mrp_rencana_pemakaian_id"
+            name="Rencana Pemakaian"
+            sequence="20"
+            parent="mrp.menu_mrp_configuration"
+            action="kb_mrp_production.rencana_pemakaian_actions_id"/>
+        <menuitem
+            id="kb_pallet_id"
+            name="Pallet"
+            sequence="30"
+            parent="kb_mrp_production.kb_mrp_production_id"/>
+            <menuitem
+                id="kb_pallet_sawmil_id"
+                name="Pallet Sawmil"
+                sequence="11"
+                parent="kb_mrp_production.kb_pallet_id"
+                action="kb_mrp_production.pallet_sawmil_actions_id"/>
+</odoo>

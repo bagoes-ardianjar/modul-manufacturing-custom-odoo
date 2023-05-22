@@ -1,0 +1,999 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--    Pembahanan    -->
+        <report
+              id="menu_report_kb_mrp_pembahanan_id"
+              model="kb.mrp.pembahanan"
+              string="Tag Card"
+              report_type="qweb-pdf"
+              name="kb_mrp_production.report_template_kb_mrp_pembahanan_id"
+              file="kb_mrp_production.report_template_kb_mrp_pembahanan_id"/>
+
+        <!--   Sawmil     -->
+        <report
+              id="menu_report_kb_mrp_sawmil_id"
+              model="kb.mrp.sawmil"
+              string="Tag Card"
+              report_type="qweb-pdf"
+              name="kb_mrp_production.report_template_kb_mrp_sawmil_id"
+              file="kb_mrp_production.report_template_kb_mrp_sawmil_id"/>
+
+        <!--   Pembahanan     -->
+        <record id="new_paperformat_kb_mrp_pembahanan_id" model="report.paperformat">
+            <field name="name">KB MRP Pembahanan</field>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">5</field>
+            <field name="margin_bottom">5</field>
+            <field name="margin_left">25</field>
+            <field name="margin_right">25</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">20</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <!--   Sawmil     -->
+        <record id="new_paperformat_kb_mrp_sawmil_id" model="report.paperformat">
+            <field name="name">KB MRP Sawmil</field>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">15</field>
+            <field name="margin_bottom">5</field>
+            <field name="margin_left">25</field>
+            <field name="margin_right">25</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <!--   Pembahanan     -->
+        <record id="kb_mrp_production.menu_report_kb_mrp_pembahanan_id" model="ir.actions.report">
+          <field name="paperformat_id" ref="kb_mrp_production.new_paperformat_kb_mrp_pembahanan_id"/>
+        </record>
+
+        <!--    Sawmil    -->
+        <record id="kb_mrp_production.menu_report_kb_mrp_sawmil_id" model="ir.actions.report">
+          <field name="paperformat_id" ref="kb_mrp_production.new_paperformat_kb_mrp_sawmil_id"/>
+        </record>
+
+        <!--    Pembahanan    -->
+        <template id="report_template_kb_mrp_pembahanan_id">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.internal_layout">
+                        <div class="page">
+                            <table style="border-collapse: collapse;" width="100%">
+                                <tr>
+                                  <td style="border-top:1px solid black;
+                                            border-left:1px solid black;
+                                            border-right:1px solid black;
+                                            font-size:18px;
+                                            height:40px;
+                                            text-align:center;
+                                            padding-top:20px;" colspan="6">
+                                    <span>PT. CIPTA KREASI WOOD INDUSTRY</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border-left:1px solid black;
+                                            text-align:center; font-size:20px; height:40px;" width="40%" colspan="2">
+                                    <span>TAG CARD</span>
+                                  </td>
+                                  <td style="text-align:center; font-size:20px; height:40px;" width="15%" colspan="1">
+                                  </td>
+                                  <td style="border-right:1px solid black;
+                                            text-align:left; font-size:20px; padding-left:2px; height:40px;" width="45%" colspan="3">
+                                    <span>NO:</span><span style="color:white;">...</span><span t-field="doc.name"/>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border-left:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" colspan="3"></td>
+                                  <td style="border-right:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" colspan="3"></td>
+                                </tr>
+                                <tr>
+                                  <td style="border-left:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" width="34%" colspan="2">
+                                    <span>Bahan:</span>
+                                  </td>
+                                  <td style="padding-left:15px;
+                                            text-align:left; font-size:15px; height:25px;" width="33%" colspan="2">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border-right:1px solid black; padding-left:15px;
+                                            text-align:left; font-size:15px; height:25px;" width="33%" colspan="2">
+                                    <span>Fisik:</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border-left:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" width="34%" colspan="2">
+                                    <input style="padding-left:20px;" type="checkbox"/><span> Baku</span>
+                                  </td>
+                                  <td style="padding-left:15px;
+                                            text-align:left; font-size:15px; height:25px;" width="33%" colspan="2">
+                                    <input style="padding-left:15px;" type="checkbox"/><span> Moulding</span>
+                                  </td>
+                                  <td style="border-right:1px solid black; padding-left:15px;
+                                            text-align:left; font-size:15px; height:25px;" width="33%" colspan="2">
+                                    <input style="padding-left:15px;" type="checkbox"/><span> Standart</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border-left:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" width="34%" colspan="2">
+                                    <input style="padding-left:20px;" type="checkbox"/><span> 1/2 Jadi</span>
+                                  </td>
+                                  <td style="padding-left:15px;
+                                            text-align:left; font-size:15px; height:25px;" width="33%" colspan="2">
+                                    <input style="padding-left:15px;" type="checkbox"/><span> B. Jadi</span>
+                                  </td>
+                                  <td style="border-right:1px solid black; padding-left:15px;
+                                            text-align:left; font-size:15px; height:25px;" width="33%" colspan="2">
+                                    <input style="padding-left:15px;" type="checkbox"/><span> Tipis</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border-left:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" width="34%" colspan="2">
+                                    <input style="padding-left:20px;" type="checkbox"/><span> K/D</span>
+                                  </td>
+                                  <td style="padding-left:15px;
+                                            text-align:left; font-size:15px; height:25px;" width="33%" colspan="2">
+                                    <input style="padding-left:15px;" type="checkbox"/><span> A/D</span>
+                                  </td>
+                                  <td style="border-right:1px solid black; padding-left:15px;
+                                            text-align:left; font-size:15px; height:25px;" width="33%" colspan="2">
+                                    <input style="padding-left:15px;" type="checkbox"/><span> Mata</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border-left:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" width="34%" colspan="2">
+                                    <input style="padding-left:20px;" type="checkbox"/><span> Bersertifikat</span>
+                                  </td>
+                                  <td style="padding-left:15px;
+                                            text-align:left; font-size:15px; height:25px;" width="33%" colspan="2">
+                                    <input style="padding-left:15px;" type="checkbox"/><span> Tidak</span>
+                                  </td>
+                                  <td style="border-right:1px solid black; padding-left:15px;
+                                            text-align:left; font-size:15px; height:25px;" width="33%" colspan="2">
+                                    <input style="padding-left:15px;" type="checkbox"/><span> ( </span><span style="color:white;">..........</span><span> )</span>
+                                  </td>
+                                </tr>
+
+
+
+                                <tr>
+                                  <td style="border-left:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" colspan="3"></td>
+                                  <td style="border-right:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" colspan="3"></td>
+                                </tr>
+
+                                <tr>
+                                  <td style="border-left:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" width="50%" colspan="3">
+                                    <span>Kode Beli</span><span style="color:white;">...</span><span>:</span>
+                                  </td>
+                                  <td style="border-right:1px solid black; padding-left:15px;
+                                            text-align:left; font-size:15px; height:25px;" width="50%" colspan="3">
+                                    <span>Tgl. Masuk</span><span style="color:white;">.....</span><span>:</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border-left:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" width="50%" colspan="3">
+                                    <span>Kwalitas</span><span style="color:white;">.....</span><span>:</span>
+                                  </td>
+                                  <td style="border-right:1px solid black; padding-left:15px;
+                                            text-align:left; font-size:15px; height:25px;" width="50%" colspan="3">
+                                    <span>Jenis Kayu</span><span style="color:white;">.....</span><span>:</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border-left:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" width="50%" colspan="3">
+                                    <span>Oven</span><span style="color:white;">............</span><span>:</span>
+                                  </td>
+                                  <td style="border-right:1px solid black; padding-left:15px;
+                                            text-align:left; font-size:15px; height:25px;" width="50%" colspan="3">
+                                    <span>Supplier</span><span style="color:white;">..........</span><span>:</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border-left:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" width="50%" colspan="3">
+                                    <span>Item No.</span><span style="color:white;">.....</span><span>: IT-</span>
+                                  </td>
+                                  <td style="border-right:1px solid black; padding-left:15px;
+                                            text-align:left; font-size:15px; height:25px;" width="50%" colspan="3">
+                                    <span></span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border-left:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" width="50%" colspan="3">
+                                    <span>Marking</span><span style="color:white;">.....</span><span>:</span>
+                                  </td>
+                                  <td style="border-right:1px solid black; padding-left:15px;
+                                            text-align:left; font-size:15px; height:25px;" width="50%" colspan="3">
+                                    <span></span>
+                                  </td>
+                                </tr>
+
+                                <tr>
+                                  <td style="border-left:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" colspan="3"></td>
+                                  <td style="border-right:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" colspan="3"></td>
+                                </tr>
+
+                                <tr>
+                                  <td style="border:1px solid black; padding-left:20px;
+                                            text-align:center; font-size:15px; height:25px;" width="50%" colspan="3">
+                                    <span>Ukuran</span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="22%" colspan="1">
+                                    <span>Jumlah</span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="28%" rowspan="2" colspan="2">
+                                    <span>Keterangan</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border:1px solid black; padding-left:20px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span>Tbl.</span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span>Lbr.</span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span>Pjg.</span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span>Pcs</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border:1px solid black; padding-left:20px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="28%" colspan="2">
+                                    <span> </span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border:1px solid black; padding-left:20px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="28%" colspan="2">
+                                    <span> </span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border:1px solid black; padding-left:20px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="28%" colspan="2">
+                                    <span> </span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border:1px solid black; padding-left:20px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="28%" colspan="2">
+                                    <span> </span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border:1px solid black; padding-left:20px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="28%" colspan="2">
+                                    <span> </span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border:1px solid black; padding-left:20px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="28%" colspan="2">
+                                    <span> </span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border:1px solid black; padding-left:20px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="28%" colspan="2">
+                                    <span> </span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border:1px solid black; padding-left:20px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="28%" colspan="2">
+                                    <span> </span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border:1px solid black; padding-left:20px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="28%" colspan="2">
+                                    <span> </span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border:1px solid black; padding-left:20px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="28%" colspan="2">
+                                    <span> </span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border:1px solid black; padding-left:20px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="28%" colspan="2">
+                                    <span> </span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border:1px solid black; padding-left:20px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="28%" colspan="2">
+                                    <span> </span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border:1px solid black; padding-left:20px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="28%" colspan="2">
+                                    <span> </span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border:1px solid black; padding-left:20px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="28%" colspan="2">
+                                    <span> </span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border:1px solid black; padding-left:20px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                    <span> </span>
+                                  </td>
+                                  <td style="border:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" width="28%" colspan="2">
+                                    <span> </span>
+                                  </td>
+                                </tr>
+
+                                <tr>
+                                  <td style="border-left:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" colspan="3"></td>
+                                  <td style="border-right:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" colspan="3"></td>
+                                </tr>
+
+                                <tr>
+                                  <td style="border-left:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" colspan="3">
+                                    <span>Tgl. Keluar</span><span style="color:white;">.....</span><span>:</span>
+                                  </td>
+                                  <td style="border-right:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" colspan="3">
+                                    <span></span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border-left:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" colspan="3">
+                                    <span>PI</span><span style="color:white;">........................</span><span>:</span>
+                                  </td>
+                                  <td style="border-right:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" colspan="3">
+                                    <span>Ditally Oleh.</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border-left:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" colspan="3">
+                                    <span>TI</span><span style="color:white;">........................</span><span>:</span>
+                                  </td>
+                                  <td style="border-right:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" colspan="3">
+                                    <span></span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border-left:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" colspan="3">
+                                    <span>COMP</span><span style="color:white;">..............</span><span>:</span>
+                                  </td>
+                                  <td style="border-right:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" colspan="3">
+                                    <span></span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border-left:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" colspan="3">
+                                    <span>KET.</span><span style="color:white;">...................</span><span>:</span>
+                                  </td>
+                                  <td style="border-right:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" colspan="3">
+                                    <span>(</span><span>_________________</span><span>)</span>
+                                  </td>
+                                </tr>
+
+                                <tr>
+                                  <td style="border-left:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" colspan="3"></td>
+                                  <td style="border-right:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" colspan="3"></td>
+                                </tr>
+
+                                <tr>
+                                  <td style="border-left:1px solid black; padding-left:50px;
+                                            text-align:center; font-size:15px; height:25px;" colspan="3">
+                                    <span>Pengirim.</span>
+                                  </td>
+                                  <td style="border-right:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" colspan="3">
+                                    <span>Penerima.</span>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td style="border-left:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" colspan="3"></td>
+                                  <td style="border-right:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" colspan="3"></td>
+                                </tr>
+                                <tr>
+                                  <td style="border-left:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" colspan="3"></td>
+                                  <td style="border-right:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" colspan="3"></td>
+                                </tr>
+                                <tr>
+                                  <td style="border-left:1px solid black; padding-left:50px;
+                                            text-align:center; font-size:15px; height:25px;" colspan="3">
+                                    <span>(</span><span>_________________</span><span>)</span>
+                                  </td>
+                                  <td style="border-right:1px solid black; padding-left:15px;
+                                            text-align:center; font-size:15px; height:25px;" colspan="3">
+                                    <span>(</span><span>_________________</span><span>)</span>
+                                  </td>
+                                </tr>
+
+                                <tr>
+                                  <td style="border-left:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" colspan="3"></td>
+                                  <td style="border-right:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" colspan="3"></td>
+                                </tr>
+
+                                <tr>
+                                  <td style="border-left:1px solid black;
+                                            border-right:1px solid black; padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" colspan="6">
+                                    <input style="padding-left:20px;" type="checkbox"/><span> Beri tanda v pada kotak yang sesuai</span>
+                                  </td>
+                                </tr>
+
+                                <tr>
+                                  <td style="border-bottom:1px solid black;
+                                            border-left:1px solid black;
+                                            border-right:1px solid black;
+                                            padding-left:20px;
+                                            text-align:left; font-size:15px; height:25px;" colspan="6"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <!--    Sawmil    -->
+        <template id="report_template_kb_mrp_sawmil_id">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                  <t t-foreach="doc.sawmil_detail_helper_ids" t-as="line">
+                    <t t-call="web.internal_layout">
+                      <div class="page">
+                        <table style="border-collapse: collapse;" width="100%">
+                            <tr>
+                              <td style="border-top:1px solid black; border-left:1px solid black;                                         border-right:1px solid black;                                         font-size:18px;                                         height:40px;                                         text-align:center;                                         padding-top:20px;" colspan="6">
+                                <span>PT. CIPTA KREASI WOOD INDUSTRY</span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-left:1px solid black; text-align:center; font-size:20px; height:40px;" width="40%" colspan="2">
+                                <span>TAG CARD</span>
+                              </td>
+                              <td style="text-align:center; font-size:20px; height:40px;" width="15%" colspan="1">
+                              </td>
+                              <td style="border-right:1px solid black; text-align:left; font-size:20px; padding-left:2px; height:40px;" width="45%" colspan="3">
+                                <span>NO:</span><span style="color:white;">...</span><span t-field="line.name"/>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-left:1px solid black; padding-left:20px; text-align:left; font-size:15px; height:25px;" colspan="3"/>
+                              <td style="border-right:1px solid black; padding-left:20px; text-align:left; font-size:15px; height:25px;" colspan="3"/>
+                            </tr>
+                            <tr>
+                              <td style="border-left:1px solid black; padding-left:20px; text-align:left; font-size:15px; height:25px;" width="34%" colspan="2">
+                                <span>Bahan:</span>
+                              </td>
+                              <td style="padding-left:15px; text-align:left; font-size:15px; height:25px;" width="33%" colspan="2">
+                                <span> </span>
+                              </td>
+                              <td style="border-right:1px solid black; padding-left:15px; text-align:left; font-size:15px; height:25px;" width="33%" colspan="2">
+                                <span>Fisik:</span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-left:1px solid black; padding-left:20px; text-align:left; font-size:15px; height:25px;" width="34%" colspan="2">
+                                <input style="padding-left:20px;" type="checkbox"/><span> Baku</span>
+                              </td>
+                              <td style="padding-left:15px; text-align:left; font-size:15px; height:25px;" width="33%" colspan="2">
+                                <input style="padding-left:15px;" type="checkbox"/><span> Moulding</span>
+                              </td>
+                              <td style="border-right:1px solid black; padding-left:15px; text-align:left; font-size:15px; height:25px;" width="33%" colspan="2">
+                                <input style="padding-left:15px;" type="checkbox"/><span> Standart</span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-left:1px solid black; padding-left:20px; text-align:left; font-size:15px; height:25px;" width="34%" colspan="2">
+                                <input style="padding-left:20px;" type="checkbox"/><span> 1/2 Jadi</span>
+                              </td>
+                              <td style="padding-left:15px; text-align:left; font-size:15px; height:25px;" width="33%" colspan="2">
+                                <input style="padding-left:15px;" type="checkbox"/><span> B. Jadi</span>
+                              </td>
+                              <td style="border-right:1px solid black; padding-left:15px; text-align:left; font-size:15px; height:25px;" width="33%" colspan="2">
+                                <input style="padding-left:15px;" type="checkbox"/><span> Tipis</span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-left:1px solid black; padding-left:20px; text-align:left; font-size:15px; height:25px;" width="34%" colspan="2">
+                                <input style="padding-left:20px;" type="checkbox"/><span> K/D</span>
+                              </td>
+                              <td style="padding-left:15px; text-align:left; font-size:15px; height:25px;" width="33%" colspan="2">
+                                <input style="padding-left:15px;" type="checkbox"/><span> A/D</span>
+                              </td>
+                              <td style="border-right:1px solid black; padding-left:15px; text-align:left; font-size:15px; height:25px;" width="33%" colspan="2">
+                                <input style="padding-left:15px;" type="checkbox"/><span> Mata</span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-left:1px solid black; padding-left:20px; text-align:left; font-size:15px; height:25px;" width="34%" colspan="2">
+                                <input style="padding-left:20px;" type="checkbox"/><span> Bersertifikat</span>
+                              </td>
+                              <td style="padding-left:15px; text-align:left; font-size:15px; height:25px;" width="33%" colspan="2">
+                                <input style="padding-left:15px;" type="checkbox"/><span> Tidak</span>
+                              </td>
+                              <td style="border-right:1px solid black; padding-left:15px; text-align:left; font-size:15px; height:25px;" width="33%" colspan="2">
+                                <input style="padding-left:15px;" type="checkbox"/><span> ( </span><span style="color:white;">..........</span><span> )</span>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td style="border-left:1px solid black; padding-left:20px; text-align:left; font-size:15px; height:25px;" colspan="3"/>
+                              <td style="border-right:1px solid black; padding-left:20px; text-align:left; font-size:15px; height:25px;" colspan="3"/>
+                            </tr>
+
+                            <tr>
+                              <td style="border-left:1px solid black; padding-left:20px; text-align:left; font-size:15px; height:25px;" width="50%" colspan="3">
+                                <span>Kode Beli</span><span style="padding-left:15px;">:</span>
+                              </td>
+                              <td style="border-right:1px solid black; padding-left:15px; text-align:left; font-size:15px; height:25px;" width="50%" colspan="3">
+                                <span>Tgl. Masuk</span><span style="padding-left:19px;">:</span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-left:1px solid black; padding-left:20px;text-align:left; font-size:15px; height:25px;" width="50%" colspan="3">
+                                <span>Kwalitas</span><span style="padding-left:20px;">:</span>
+                              </td>
+                              <td style="border-right:1px solid black; padding-left:15px;text-align:left; font-size:15px; height:25px;" width="50%" colspan="3">
+                                <span>Jenis Kayu</span><span style="padding-left:20px;">:</span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-left:1px solid black; padding-left:20px;text-align:left; font-size:15px; height:25px;" width="50%" colspan="3">
+                                <span>Oven</span><span style="padding-left:40px;">:</span>
+                              </td>
+                              <td style="border-right:1px solid black; padding-left:15px;text-align:left; font-size:15px; height:25px;" width="50%" colspan="3">
+                                <span>Supplier</span><span style="padding-left:37px;">:</span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-left:1px solid black; padding-left:20px;text-align:left; font-size:15px; height:25px;" width="50%" colspan="3">
+                                <span>Item No.</span><span style="padding-left:20px;">:</span><span style="padding-left:5px;" t-if="line.kb_mrp_sawmil_line_id.kb_mrp_sawmil_id.mo_id" t-field="line.kb_mrp_sawmil_line_id.kb_mrp_sawmil_id.mo_id.name"/>
+                              </td>
+                              <td style="border-right:1px solid black; padding-left:15px;text-align:left; font-size:15px; height:25px;" width="50%" colspan="3">
+                                <span/>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-left:1px solid black; padding-left:20px;text-align:left; font-size:15px; height:25px;" width="50%" colspan="3">
+                                <span>Marking</span><span style="padding-left:23px;">:</span>
+                              </td>
+                              <td style="border-right:1px solid black; padding-left:15px;text-align:left; font-size:15px; height:25px;" width="50%" colspan="3">
+                                <span/>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td style="border-left:1px solid black; padding-left:20px;text-align:left; font-size:15px; height:25px;" colspan="3"/>
+                              <td style="border-right:1px solid black; padding-left:20px;text-align:left; font-size:15px; height:25px;" colspan="3"/>
+                            </tr>
+
+                            <tr>
+                              <td style="border:1px solid black; padding-left:20px;text-align:center; font-size:15px; height:25px;" width="50%" colspan="3">
+                                <span>Ukuran</span>
+                              </td>
+                              <td style="border:1px solid black; padding-left:15px;text-align:center; font-size:15px; height:25px;" width="22%" colspan="1">
+                                <span>Jumlah</span>
+                              </td>
+                              <td style="border:1px solid black; padding-left:15px;text-align:center; font-size:15px; height:25px;" width="28%" rowspan="2" colspan="2">
+                                <span>Keterangan</span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border:1px solid black; padding-left:20px;text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                <span>Pjg.</span>
+                              </td>
+                              <td style="border:1px solid black; padding-left:15px;text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                <span>Lbr.</span>
+                              </td>
+                              <td style="border:1px solid black; padding-left:15px;text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                <span>Tbl.</span>
+                              </td>
+                              <td style="border:1px solid black; padding-left:15px;text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                <span>Pcs</span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border:1px solid black; padding-left:20px;text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                <span t-field="line.panjang"/>
+                              </td>
+                              <td style="border:1px solid black; padding-left:15px;text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                <span t-field="line.lebar"/>
+                              </td>
+                              <td style="border:1px solid black; padding-left:15px;text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                <span t-field="line.tebal"/>
+                              </td>
+                              <td style="border:1px solid black; padding-left:15px;text-align:center; font-size:15px; height:25px;" width="18%" colspan="1">
+                                <span t-field="line.hasil_keping"/>
+                              </td>
+                              <td style="border:1px solid black; padding-left:15px;text-align:center; font-size:15px; height:25px;" width="28%" colspan="2">
+                                <span> </span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-left:1px solid black; padding-left:20px;text-align:left; font-size:15px; height:25px;" colspan="3"/>
+                              <td style="border-right:1px solid black; padding-left:20px;text-align:left; font-size:15px; height:25px;" colspan="3"/>
+                            </tr>
+
+                            <tr>
+                              <td style="border-left:1px solid black; padding-left:20px;text-align:left; font-size:15px; height:25px;" colspan="3">
+                                <span>Tgl. Keluar</span><span style="padding-left:24px;">:</span>
+                              </td>
+                              <td style="border-right:1px solid black; padding-left:15px;text-align:center; font-size:15px; height:25px;" colspan="3">
+                                <span/>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-left:1px solid black; padding-left:20px;text-align:left; font-size:15px; height:25px;" colspan="3">
+                                <span>PI</span><span style="padding-left:77px;">:</span>
+                              </td>
+                              <td style="border-right:1px solid black; padding-left:15px;text-align:center; font-size:15px; height:25px;" colspan="3">
+                                <span>Ditally Oleh.</span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-left:1px solid black; padding-left:20px;text-align:left; font-size:15px; height:25px;" colspan="3">
+                                <span>TI</span><span style="padding-left:77px;">:</span>
+                              </td>
+                              <td style="border-right:1px solid black; padding-left:15px;text-align:center; font-size:15px; height:25px;" colspan="3">
+                                <span/>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-left:1px solid black; padding-left:20px;text-align:left; font-size:15px; height:25px;" colspan="3">
+                                <span>COMP</span><span style="padding-left:47px;">:</span>
+                              </td>
+                              <td style="border-right:1px solid black; padding-left:15px;text-align:center; font-size:15px; height:25px;" colspan="3">
+                                <span/>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-left:1px solid black; padding-left:20px;text-align:left; font-size:15px; height:25px;" colspan="3">
+                                <span>KET.</span><span style="padding-left:57px;">:</span>
+                              </td>
+                              <td style="border-right:1px solid black; padding-left:15px;text-align:center; font-size:15px; height:25px;" colspan="3">
+                                <span>(</span><span>_________________</span><span>)</span>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td style="border-left:1px solid black; padding-left:20px;text-align:left; font-size:15px; height:25px;" colspan="3"/>
+                              <td style="border-right:1px solid black; padding-left:20px;text-align:left; font-size:15px; height:25px;" colspan="3"/>
+                            </tr>
+
+                            <tr>
+                              <td style="border-left:1px solid black; padding-left:50px;text-align:center; font-size:15px; height:25px;" colspan="3">
+                                <span>Pengirim.</span>
+                              </td>
+                              <td style="border-right:1px solid black; padding-left:15px;text-align:center; font-size:15px; height:25px;" colspan="3">
+                                <span>Penerima.</span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-left:1px solid black; padding-left:20px;text-align:left; font-size:15px; height:25px;" colspan="3"/>
+                              <td style="border-right:1px solid black; padding-left:20px;text-align:left; font-size:15px; height:25px;" colspan="3"/>
+                            </tr>
+                            <tr>
+                              <td style="border-left:1px solid black; padding-left:20px;text-align:left; font-size:15px; height:25px;" colspan="3"/>
+                              <td style="border-right:1px solid black; padding-left:20px;text-align:left; font-size:15px; height:25px;" colspan="3"/>
+                            </tr>
+                            <tr>
+                              <td style="border-left:1px solid black; padding-left:50px;text-align:center; font-size:15px; height:25px;" colspan="3">
+                                <span>(</span><span>_________________</span><span>)</span>
+                              </td>
+                              <td style="border-right:1px solid black; padding-left:15px;text-align:center; font-size:15px; height:25px;" colspan="3">
+                                <span>(</span><span>_________________</span><span>)</span>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td style="border-left:1px solid black; padding-left:20px;text-align:left; font-size:15px; height:25px;" colspan="3"/>
+                              <td style="border-right:1px solid black; padding-left:20px;text-align:left; font-size:15px; height:25px;" colspan="3"/>
+                            </tr>
+
+                            <tr>
+                              <td style="border-left:1px solid black;border-right:1px solid black; padding-left:20px;text-align:left; font-size:15px; height:25px;" colspan="6">
+                                <input style="padding-left:20px;" type="checkbox"/><span> Beri tanda v pada kotak yang sesuai</span>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td style="border-bottom:1px solid black;border-left:1px solid black;border-right:1px solid black;padding-left:20px;text-align:left; font-size:15px; height:25px;" colspan="6"/>
+                            </tr>
+                        </table>
+
+                      </div>
+                    </t>
+                  </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

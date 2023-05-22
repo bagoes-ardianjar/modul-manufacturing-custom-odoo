@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sequence_kb_mrp_pembahanan_id" model="ir.sequence">
+         <field name="name">Sequence Kb Mrp Pembahanan</field>
+         <field name="code">kb.mrp.pembahanan</field>
+         <field name="prefix">MP/%(year)s/</field>
+         <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="True" name="use_date_range"/>
+        <field name="company_id" eval="False"/>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="sequence_kb_mrp_sawmil_id" model="ir.sequence">
+         <field name="name">Sequence Kb Mrp Sawmil</field>
+         <field name="code">kb.mrp.sawmil</field>
+         <field name="prefix">SW/%(year)s/</field>
+         <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="True" name="use_date_range"/>
+        <field name="company_id" eval="False"/>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="sequence_kb_mrp_sawmil_line_id" model="ir.sequence">
+         <field name="name">Sequence Kb Mrp Sawmil Line</field>
+         <field name="code">kb.mrp.sawmil.line</field>
+         <field name="prefix">SWL/%(year)s/</field>
+         <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="True" name="use_date_range"/>
+        <field name="company_id" eval="False"/>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="sequence_kb_mrp_sawmil_line_detail_id" model="ir.sequence">
+         <field name="name">Sequence Kb Mrp Sawmil Line Detail</field>
+         <field name="code">kb.mrp.sawmil.line.detail</field>
+         <field name="prefix">SWLD/%(year)s/</field>
+         <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="True" name="use_date_range"/>
+        <field name="company_id" eval="False"/>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="sequence_kb_mrp_vakum_celup_id" model="ir.sequence">
+         <field name="name">Sequence Kb Mrp Vakum Celup</field>
+         <field name="code">kb.mrp.vakum.celup</field>
+         <field name="prefix">VC/%(year)s/</field>
+         <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="True" name="use_date_range"/>
+        <field name="company_id" eval="False"/>
+        <field name="padding">5</field>
+    </record>
+
+     <record id="sequence_kb_mrp_vakum_celup_line_id" model="ir.sequence">
+         <field name="name">Sequence Kb Mrp Vakum Celup Line</field>
+         <field name="code">kb.mrp.vakum.celup.line</field>
+         <field name="prefix">VCL/%(year)s/</field>
+         <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="True" name="use_date_range"/>
+        <field name="company_id" eval="False"/>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="sequence_kb_mrp_vakum_celup_line_detail_id" model="ir.sequence">
+         <field name="name">Sequence Kb Mrp Vakum Celup Line Detail</field>
+         <field name="code">kb.mrp.vakum.celup.line.detail</field>
+         <field name="prefix">VCLD/%(year)s/</field>
+         <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="True" name="use_date_range"/>
+        <field name="company_id" eval="False"/>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="sequence_kb_mrp_sticking_id" model="ir.sequence">
+         <field name="name">Sequence Kb Mrp Sticking</field>
+         <field name="code">kb.mrp.sticking</field>
+         <field name="prefix">SG/%(year)s/</field>
+         <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="True" name="use_date_range"/>
+        <field name="company_id" eval="False"/>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="sequence_kb_mrp_sticking_line_id" model="ir.sequence">
+         <field name="name">Sequence Kb Mrp Sticking Line</field>
+         <field name="code">kb.mrp.sticking.line</field>
+         <field name="prefix">SGL/%(year)s/</field>
+         <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="True" name="use_date_range"/>
+        <field name="company_id" eval="False"/>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="sequence_kb_mrp_sticking_line_detail_id" model="ir.sequence">
+         <field name="name">Sequence Kb Mrp Sticking Line Detail</field>
+         <field name="code">kb.mrp.sticking.line.detail</field>
+         <field name="prefix">SGLD/%(year)s/</field>
+         <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="True" name="use_date_range"/>
+        <field name="company_id" eval="False"/>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="sequence_kb_mrp_oven_id" model="ir.sequence">
+         <field name="name">Sequence Kb Mrp Oven</field>
+         <field name="code">kb.mrp.oven</field>
+         <field name="prefix">OV/%(year)s/</field>
+         <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="True" name="use_date_range"/>
+        <field name="company_id" eval="False"/>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="sequence_kb_mrp_oven_line_id" model="ir.sequence">
+         <field name="name">Sequence Kb Mrp Oven Line</field>
+         <field name="code">kb.mrp.oven.line</field>
+         <field name="prefix">OVL/%(year)s/</field>
+         <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="True" name="use_date_range"/>
+        <field name="company_id" eval="False"/>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="sequence_kb_mrp_oven_line_detail_id" model="ir.sequence">
+         <field name="name">Sequence Kb Mrp Oven Line Detail</field>
+         <field name="code">kb.mrp.oven.line.detail</field>
+         <field name="prefix">OVLD/%(year)s/</field>
+         <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="True" name="use_date_range"/>
+        <field name="company_id" eval="False"/>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="sequence_kb_mrp_gudang_kering_id" model="ir.sequence">
+        <field name="name">Sequence Kb Mrp Gudang Kering</field>
+        <field name="code">kb.mrp.gudang.kering</field>
+        <field name="prefix">GK/%(year)s/</field>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="True" name="use_date_range"/>
+        <field name="company_id" eval="False"/>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="sequence_kb_mrp_gudang_kering_line_id" model="ir.sequence">
+        <field name="name">Sequence Kb Mrp Gudang Kering Line</field>
+        <field name="code">kb.mrp.gudang.kering.line</field>
+        <field name="prefix">GKL/%(year)s/</field>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="True" name="use_date_range"/>
+        <field name="company_id" eval="False"/>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="sequence_kb_mrp_gudang_kering_line_detail_id" model="ir.sequence">
+        <field name="name">Sequence Kb Mrp Gudang Kering Line Detail</field>
+        <field name="code">kb.mrp.gudang.kering.line.detail</field>
+        <field name="prefix">GKLD/%(year)s/</field>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="True" name="use_date_range"/>
+        <field name="company_id" eval="False"/>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="sequence_kb_pallet_sawmil_id" model="ir.sequence">
+        <field name="name">Sequence Kb Pallet Sawmil</field>
+        <field name="code">kb.pallet.sawmil</field>
+        <field name="prefix">PS/%(year)s/</field>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="True" name="use_date_range"/>
+        <field name="company_id" eval="False"/>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="sequence_kb_pallet_sawmil_line_id" model="ir.sequence">
+        <field name="name">Sequence Kb Pallet Sawmil Line</field>
+        <field name="code">kb.pallet.sawmil.line</field>
+        <field name="prefix">PSL/%(year)s/</field>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="True" name="use_date_range"/>
+        <field name="company_id" eval="False"/>
+        <field name="padding">5</field>
+    </record>
+</odoo>

@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="kb_mrp_pembahanan_tree_view_id" model="ir.ui.view">
+        <field name="name">kb_mrp_pembahanan_tree_view_id</field>
+        <field name="model">kb.mrp.pembahanan</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="item"/>
+                <field name="code"/>
+                <field name="grade"/>
+                <field name="tahun"/>
+                <field name="tanggal_masuk_oven"/>
+                <field name="tanggal_selesai_vakum"/>
+                <field name="tanggal_selesai_stick"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="kb_mrp_pembahanan_form_view_id" model="ir.ui.view">
+        <field name="name">kb_mrp_pembahanan_form_view_id</field>
+        <field name="model">kb.mrp.pembahanan</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="item"/>
+                            <field name="code"/>
+                            <field name="tebal"/>
+                            <field name="pcs"/>
+                            <field name="m3"/>
+                            <field name="vakum_celup"/>
+                            <field name="shift"/>
+                            <field name="keterangan"/>
+                        </group>
+                        <group>
+                            <field name="jenis_kayu"/>
+                            <field name="no_chamber"/>
+                            <field name="grade"/>
+                            <field name="fsc"/>
+                            <field name="tahun"/>
+                            <field name="tanggal_masuk_oven" string="Tgl. Masuk Oven"/>
+                            <field name="tanggal_selesai_vakum" string="Tgl. Selesai Vakum"/>
+                            <field name="tanggal_selesai_stick" string="Tgl. Selesai Stick"/>
+                            <field name="tanggal_keluar_oven" string="Tgl. Keluar Oven"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="kb_mrp_sawmil_tree_view_id" model="ir.ui.view">
+        <field name="name">kb_mrp_sawmil_tree_view_id</field>
+        <field name="model">kb.mrp.sawmil</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" string="Sawmil Number" readonly="1"/>
+                <field name="tanggal_gesek"/>
+                <field name="mo_id"/>
+                <field name="status" readonly="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="kb_mrp_sawmil_form_view_id" model="ir.ui.view">
+        <field name="name">kb_mrp_sawmil_form_view_id</field>
+        <field name="model">kb.mrp.sawmil</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button type="object" name="func_process" string="Process" attrs="{'invisible' : [('status', '!=', 'draft')]}" class="oe_highlight"/>
+                    <button type="object" name="func_done" string="Validate" attrs="{'invisible' : [('status', '!=', 'process')]}" class="oe_highlight"/>
+                    <button type="object" name="func_view_mo" string="View MO" attrs="{'invisible' : [('mo_id', '=', False)]}" class="oe_highlight"/>
+                    <field name="status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" string="Sawmil Number" readonly="1"/>
+                            <field name="tanggal_gesek" required="1" attrs="{'readonly': [('status', '=', 'done')]}"/>
+                        </group>
+                        <group>
+                            <field name="mo_id" attrs="{'readonly': [('status', '=', 'done')]}"/>
+                            <field name="keterangan" attrs="{'readonly': [('status', '=', 'done')]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                            <page string="Logs">
+                                <field name="kb_mrp_sawmil_ids" attrs="{'readonly': [('status', '=', 'done')]}" nolabel="1" options="{'reload_on_botton':True}">
+                                    <tree edit="true" editable="bottom" create="true" delete="true">
+                                        <field name="name" string="Log" readonly="1"/>
+                                        <field name="product_id"/>
+                                        <field name="jenis_kayu"/>
+                                        <field name="kode"/>
+                                        <field name="diameter1"/>
+                                        <field name="diameter2"/>
+                                        <field name="panjang"/>
+                                        <field name="log_pakai_pcs"/>
+                                        <field name="log_pakai_m3"/>
+                                        <field name="status" invisible="1"/>
+                                        <field name="location_id" invisible="1"/>
+                                        <field name="id" invisible="1"/>
+                                        <button name="func_line_detail" type="object" attrs="{'invisible': [('status', '=', 'draft')]}" icon="fa-list"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Sawmil Detail" invisible="1">
+                                <field name="sawmil_detail_helper_ids" nolabel="1" options="{'reload_on_botton':True}">
+                                    <tree editable="bottom">
+                                        <field name="tag_card" string="Tag Card"/>
+                                        <field name="name" readonly="1"/>
+                                        <field name="product_id" attrs="{'readonly': [('status', '=', 'done')]}"/>
+                                        <field name="panjang" attrs="{'readonly': [('status', '=', 'done')]}"/>
+                                        <field name="tebal" attrs="{'readonly': [('status', '=', 'done')]}"/>
+                                        <field name="lebar" attrs="{'readonly': [('status', '=', 'done')]}"/>
+                                        <field name="hasil_keping" attrs="{'readonly': [('status', '=', 'done')]}"/>
+                                        <field name="hasil_m3" attrs="{'readonly': [('status', '=', 'done')]}"/>
+                                        <field name="shift" attrs="{'readonly': [('status', '=', 'done')]}"/>
+                                        <field name="status" invisible="1"/>
+                                        <field name="location_id" invisible="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Others">
+                                <group>
+                                     <field name="location_dest_id" attrs="{'readonly': [('status', '=', 'done')]}" required="1"/>
+                                </group>
+                            </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="kb_mrp_sawmil_line_id" model="ir.ui.view">
+        <field name="name">kb_mrp_sawmil_line_id</field>
+        <field name="model">kb.mrp.sawmil.line</field>
+        <field name="arch" type="xml">
+            <form string="Detail">
+                <sheet>
+                    <group col="4">
+                        <field name="name" string="Sawmil Number" readonly="1"/>
+                        <field name="kb_mrp_sawmil_id" string="Log" readonly="1" />
+                        <field name="status" invisible="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Items">
+                            <field name="kb_mrp_sawmil_line_ids" nolable="1" options="{'reload_on_button': True}">
+                                <tree editable="bottom">
+                                    <field name="tag_card" string="Tag Card"/>
+                                    <field name="name" readonly="1"/>
+                                    <field name="product_id" attrs="{'readonly': [('status', '=', 'done')]}"/>
+                                    <field name="panjang" attrs="{'readonly': [('status', '=', 'done')]}"/>
+                                    <field name="tebal" attrs="{'readonly': [('status', '=', 'done')]}"/>
+                                    <field name="lebar" attrs="{'readonly': [('status', '=', 'done')]}"/>
+                                    <field name="hasil_keping" attrs="{'readonly': [('status', '=', 'done')]}"/>
+                                    <field name="hasil_m3" attrs="{'readonly': [('status', '=', 'done')]}"/>
+                                    <field name="shift" attrs="{'readonly': [('status', '=', 'done')]}"/>
+                                    <field name="status" invisible="1"/>
+                                    <field name="location_id" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button string="Ok" name="func_ok" type="object" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel" class="oe_link"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="kb_mrp_vakum_celup_tree_view_id" model="ir.ui.view">
+        <field name="name">kb_mrp_vakum_celup_tree_view_id</field>
+        <field name="model">kb.mrp.vakum.celup</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" readonly="1"/>
+                <field name="tahun"/>
+                <field name="tanggal_selesai_vakum"/>
+                <field name="no_nota"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="kb_mrp_vakum_celup_form_view_id" model="ir.ui.view">
+        <field name="name">kb_mrp_vakum_celup_form_view_id</field>
+        <field name="model">kb.mrp.vakum.celup</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="tahun"/>
+                            <field name="tanggal_selesai_vakum" required="1" string="Tgl. Selesai Vakum"/>
+                        </group>
+                        <group>
+                            <field name="no_nota"/>
+                            <field name="keterangan"/>
+                        </group>
+                    </group>
+                    <notebook>
+                            <page string="Detail Vakum Celup">
+                                <field name="kb_mrp_vakum_celup_ids" nolabel="1" options="{'reload_on_botton':True}">
+                                    <tree edit="true" editable="bottom" create="false" delete="false">
+                                        <field name="name" readonly="1"/>
+                                        <field name="jenis_kayu"/>
+                                        <field name="item"/>
+                                        <field name="kode"/>
+                                        <field name="diameter1"/>
+                                        <field name="diameter2"/>
+                                        <field name="panjang"/>
+                                        <field name="log_pakai_pcs"/>
+                                        <field name="log_pakai_m3"/>
+                                        <field name="no_chamber"/>
+                                        <field name="id" invisible="1"/>
+                                        <button name="func_vakum_celup_line_detail" type="object" attrs="{'invisible': [('id', '=', False)]}" icon="fa-list"/>
+                                    </tree>
+                                </field>
+                            </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="kb_mrp_vakum_celup_line_id" model="ir.ui.view">
+        <field name="name">kb_mrp_vakum_celup_line_id</field>
+        <field name="model">kb.mrp.vakum.celup.line</field>
+        <field name="arch" type="xml">
+            <form string="Detail">
+                <sheet>
+                    <group col="4">
+                        <field name="name" readonly="1"/>
+                        <field name="kb_mrp_vakum_celup_id" readonly="1" />
+                    </group>
+                    <notebook>
+                        <page string="Items">
+                            <field name="kb_mrp_vakum_celup_line_ids" nolable="1" options="{'reload_on_button': True}">
+                                <tree editable="bottom" edit="true" create="false" delete="false">
+                                    <field name="name" readonly="1"/>
+                                    <field name="tebal"/>
+                                    <field name="lebar"/>
+                                    <field name="hasil_keping"/>
+                                    <field name="hasil_m3"/>
+                                    <field name="shift"/>
+                                    <field name="grade"/>
+                                    <field name="fsc"/>
+                                    <field name="vakum_celup"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button string="Ok" name="func_ok" type="object" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel" class="oe_link"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="kb_mrp_sticking_tree_view_id" model="ir.ui.view">
+        <field name="name">kb_mrp_sticking_tree_view_id</field>
+        <field name="model">kb.mrp.sticking</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" readonly="1"/>
+                <field name="tahun"/>
+                <field name="tanggal_selesai_vakum" readonly="1"/>
+                <field name="tanggal_selesai_stick"/>
+                <field name="no_vakum_celup"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="kb_mrp_sticking_form_view_id" model="ir.ui.view">
+        <field name="name">kb_mrp_sticking_form_view_id</field>
+        <field name="model">kb.mrp.sticking</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="tahun"/>
+                            <field name="no_vakum_celup"/>
+                            <field name="tanggal_selesai_vakum" required="1" string="Tgl Selesai Vakum" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="tanggal_helper_vakum" invisible="1"/>
+                            <field name="tanggal_selesai_stick" required="1" string="Tgl Selesai Stick"/>
+                            <field name="keterangan"/>
+                        </group>
+                    </group>
+                    <notebook>
+                            <page string="Hasil Proses">
+                                <field name="kb_mrp_sticking_ids" nolabel="1" options="{'reload_on_botton':True}">
+                                    <tree edit="true" editable="bottom" create="false" delete="false">
+                                        <field name="name" readonly="1"/>
+                                        <field name="jenis_kayu"/>
+                                        <field name="item"/>
+                                        <field name="kode"/>
+                                        <field name="diameter1"/>
+                                        <field name="diameter2"/>
+                                        <field name="panjang"/>
+                                        <field name="log_pakai_pcs"/>
+                                        <field name="log_pakai_m3"/>
+                                        <field name="no_chamber"/>
+                                        <field name="id" invisible="1"/>
+                                        <button name="func_sticking_line_detail" type="object" attrs="{'invisible': [('id', '=', False)]}" icon="fa-list"/>
+                                    </tree>
+                                </field>
+                            </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="kb_mrp_sticking_line_id" model="ir.ui.view">
+        <field name="name">kb_mrp_sticking_line_id</field>
+        <field name="model">kb.mrp.sticking.line</field>
+        <field name="arch" type="xml">
+            <form string="Detail">
+                <sheet>
+                    <group col="4">
+                        <field name="name" readonly="1"/>
+                        <field name="kb_mrp_sticking_id" readonly="1" />
+                    </group>
+                    <notebook>
+                        <page string="Items">
+                            <field name="kb_mrp_sticking_line_ids" nolable="1" options="{'reload_on_button': True}">
+                                <tree editable="bottom" edit="true" create="false" delete="false">
+                                    <field name="name" readonly="1"/>
+                                    <field name="tebal"/>
+                                    <field name="lebar"/>
+                                    <field name="hasil_keping"/>
+                                    <field name="hasil_m3"/>
+                                    <field name="shift"/>
+                                    <field name="grade"/>
+                                    <field name="fsc"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button string="Ok" name="func_ok" type="object" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel" class="oe_link"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="kb_mrp_oven_tree_view_id" model="ir.ui.view">
+        <field name="name">kb_mrp_oven_tree_view_id</field>
+        <field name="model">kb.mrp.oven</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" readonly="1"/>
+                <field name="tahun"/>
+                <field name="tanggal_selesai_vakum" string="Tgl Selesai Vakum" readonly="1"/>
+                <field name="tanggal_selesai_stick" string="Tgl Selesai Stick" readonly="1"/>
+                <field name="tanggal_masuk_oven" string="Tgl Masuk Oven"/>
+                <field name="tanggal_keluar_oven" string="Tgl Keluar Oven"/>
+                <field name="no_sticking"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="kb_mrp_oven_form_view_id" model="ir.ui.view">
+        <field name="name">kb_mrp_oven_form_view_id</field>
+        <field name="model">kb.mrp.oven</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="tahun"/>
+                            <field name="no_sticking"/>
+                            <field name="tanggal_selesai_vakum" required="1" string="Tgl Selesai Vakum" readonly="1"/>
+                            <field name="tanggal_helper_vakum" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="tanggal_selesai_stick" required="1" string="Tgl Selesai Stick" readonly="1"/>
+                            <field name="tanggal_helper_stick" invisible="1"/>
+                            <field name="tanggal_masuk_oven" required="1" string="Tgl Masuk Oven"/>
+                            <field name="tanggal_keluar_oven" required="1" string="Tgl Keluar Oven"/>
+                            <field name="keterangan"/>
+                        </group>
+                    </group>
+                    <notebook>
+                            <page string="Hasil Oven">
+                                <field name="kb_mrp_oven_ids" nolabel="1" options="{'reload_on_botton':True}">
+                                    <tree edit="true" editable="bottom" create="false" delete="false">
+                                        <field name="name" readonly="1"/>
+                                        <field name="jenis_kayu"/>
+                                        <field name="item"/>
+                                        <field name="kode"/>
+                                        <field name="diameter1"/>
+                                        <field name="diameter2"/>
+                                        <field name="panjang"/>
+                                        <field name="log_pakai_pcs"/>
+                                        <field name="log_pakai_m3"/>
+                                        <field name="no_chamber"/>
+                                        <field name="id" invisible="1"/>
+                                        <button name="func_oven_line_detail" type="object" attrs="{'invisible': [('id', '=', False)]}" icon="fa-list"/>
+                                    </tree>
+                                </field>
+                            </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="kb_mrp_oven_line_id" model="ir.ui.view">
+        <field name="name">kb_mrp_oven_line_id</field>
+        <field name="model">kb.mrp.oven.line</field>
+        <field name="arch" type="xml">
+            <form string="Detail">
+                <sheet>
+                    <group col="4">
+                        <field name="name" readonly="1"/>
+                        <field name="kb_mrp_oven_id" readonly="1" />
+                    </group>
+                    <notebook>
+                        <page string="Items">
+                            <field name="kb_mrp_oven_line_ids" nolable="1" options="{'reload_on_button': True}">
+                                <tree editable="bottom" edit="true" create="false" delete="false">
+                                    <field name="name" readonly="1"/>
+                                    <field name="tebal"/>
+                                    <field name="lebar"/>
+                                    <field name="hasil_keping"/>
+                                    <field name="hasil_m3"/>
+                                    <field name="shift"/>
+                                    <field name="grade"/>
+                                    <field name="fsc"/>
+                                    <field name="vakum_celup"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button string="Ok" name="func_ok" type="object" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel" class="oe_link"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="kb_mrp_gudang_kering_tree_view_id" model="ir.ui.view">
+        <field name="name">kb_mrp_gudang_kering_tree_view_id</field>
+        <field name="model">kb.mrp.gudang.kering</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" readonly="1"/>
+                <field name="tahun"/>
+                <field name="bulan"/>
+                <field name="tujuan_kirim"/>
+                <field name="tanggal_in"/>
+                <field name="tanggal_out"/>
+                <field name="no_oven"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="kb_mrp_gudang_kering_form_view_id" model="ir.ui.view">
+        <field name="name">kb_mrp_gudang_kering_form_view_id</field>
+        <field name="model">kb.mrp.gudang.kering</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="tahun"/>
+                            <field name="bulan"/>
+                            <field name="tujuan_kirim"/>
+                            <field name="tanggal_in" required="1"/>
+                            <field name="tanggal_out" required="1"/>
+                        </group>
+                        <group>
+                            <field name="no_oven"/>
+                            <field name="tanggal_selesai_stick" required="1" string="Tgl Selesai Stick" readonly="1"/>
+                            <field name="tanggal_helper_stick" invisible="1"/>
+                            <field name="tanggal_masuk_oven" required="1" string="Tgl Masuk Oven" readonly="1"/>
+                            <field name="tanggal_helper_masukoven" invisible="1"/>
+                            <field name="tanggal_keluar_oven" required="1" string="Tgl Keluar Oven" readonly="1"/>
+                            <field name="tanggal_helper_keluaroven" invisible="1"/>
+                            <field name="keterangan"/>
+                        </group>
+                    </group>
+                    <notebook>
+                            <page string="Gudang Kering">
+                                <field name="kb_mrp_gudang_kering_ids" nolabel="1" options="{'reload_on_botton':True}">
+                                    <tree edit="true" editable="bottom" create="false" delete="false">
+                                        <field name="name" readonly="1"/>
+                                        <field name="jenis_kayu"/>
+                                        <field name="item"/>
+                                        <field name="kode"/>
+                                        <field name="diameter1"/>
+                                        <field name="diameter2"/>
+                                        <field name="panjang"/>
+                                        <field name="log_pakai_pcs"/>
+                                        <field name="log_pakai_m3"/>
+                                        <field name="no_chamber"/>
+                                        <field name="id" invisible="1"/>
+                                        <button name="func_gudang_kering_line_detail" type="object" attrs="{'invisible': [('id', '=', False)]}" icon="fa-list"/>
+                                    </tree>
+                                </field>
+                            </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="kb_mrp_gudang_kering_line_id" model="ir.ui.view">
+        <field name="name">kb_mrp_gudang_kering_line_id</field>
+        <field name="model">kb.mrp.gudang.kering.line</field>
+        <field name="arch" type="xml">
+            <form string="Detail">
+                <sheet>
+                    <group col="4">
+                        <field name="name" readonly="1"/>
+                        <field name="kb_mrp_gudang_kering_id" readonly="1" />
+                    </group>
+                    <notebook>
+                        <page string="Detail">
+                            <field name="kb_mrp_gudang_kering_line_ids" nolable="1" options="{'reload_on_button': True}">
+                                <tree editable="bottom" edit="true" create="false" delete="false">
+                                    <field name="name" readonly="1"/>
+                                    <field name="tebal"/>
+                                    <field name="lebar"/>
+                                    <field name="hasil_keping"/>
+                                    <field name="hasil_m3"/>
+                                    <field name="shift"/>
+                                    <field name="grade"/>
+                                    <field name="fsc"/>
+                                    <field name="vakum_celup"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button string="Ok" name="func_ok" type="object" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel" class="oe_link"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="kb_mrp_rencana_pemakaian_tree_view_id" model="ir.ui.view">
+        <field name="name">kb_mrp_rencana_pemakaian_tree_view_id</field>
+        <field name="model">kb.mrp.rencana.pemakaian</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="tebal"/>
+                <field name="stock_ad"/>
+                <field name="stock_oven"/>
+                <field name="stock_kd"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="kb_mrp_inherit_form_view_mo_id" model="ir.ui.view">
+        <field name="name">kb_mrp_inherit_form_view_mo_id</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/notebook/page[@name='components']/field[@name='move_raw_ids']/tree/field[@name='product_id']" position="after">
+                <field name="product_sawmil_ids" domain="[('id', 'in', product_sawmil_helper_ids)]" string="Detail Papan" widget="many2many_tags"/>
+                <field name="product_sawmil_helper_ids" invisible="1" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="kb_pallet_sawmil_tree_view_id" model="ir.ui.view">
+        <field name="name">kb_pallet_sawmil_tree_view_id</field>
+        <field name="model">kb.pallet.sawmil</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" string="No Pallet Sawmil" readonly="1"/>
+                <field name="tanggal_pallet"/>
+                <field name="panjang"/>
+                <field name="tebal"/>
+                <field name="lebar"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="kb_pallet_sawmil_form_view_id" model="ir.ui.view">
+        <field name="name">kb_pallet_sawmil_form_view_id</field>
+        <field name="model">kb.pallet.sawmil</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="tanggal_pallet"/>
+                        </group>
+                        <group>
+                            <field name="panjang" on_change="1"/>
+                            <field name="tebal" on_change="1"/>
+                            <field name="lebar" on_change="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                            <page string="Hasil Pallet Sawmil">
+                                <field name="kb_pallet_sawmil_ids" nolabel="1" options="{'reload_on_botton':True}">
+                                    <tree edit="true" editable="bottom" create="true" delete="true">
+                                        <field name="name" invisible="1"/>
+                                        <field name="sawmil_detail_id" string="Papan Sawmil"
+                                               domain="[('id', 'in', sawmil_detail_ids)]"
+                                               options="{'always_reload': True,'limit': 10, 'no_create': true, 'create': false, 'create_edit': false, 'no_open_edit':true, 'no_open': true}"/>
+                                        <field name="product_id"/>
+                                        <field name="panjang"/>
+                                        <field name="lebar"/>
+                                        <field name="tebal"/>
+                                        <field name="hasil_keping"/>
+                                        <field name="hasil_m3"/>
+                                        <field name="shift"/>
+                                        <field name="location_id" invisible="1" readonly="0"/>
+                                        <field name="user_id" invisible="1"/>
+                                        <field name="sawmil_detail_ids" widget="many2many_tags" invisible="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
